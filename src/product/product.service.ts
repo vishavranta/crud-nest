@@ -18,7 +18,11 @@ export class ProductsService {
   }
 
   getSingleProduct(productId: string) {
-    const product = this.findProduct(productId)[0];
+    const product = this.product.find(prod=> prod.id === productId);
+                                      if (!product){
+                                            throw new NotFoundException("Could not Found");
+    }
+    
     return { ...product };
   }
 
